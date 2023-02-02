@@ -12,6 +12,7 @@ import {
   OrbitControls,
   Environment,
 } from "@react-three/drei";
+import { Effects } from "./Effects";
 
 const HPI = Math.PI / 2;
 const red = new THREE.Color("#fac020");
@@ -21,11 +22,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function Three() {
   return (
-    <Canvas dpr={[1, 2]} camera={{ fov: 35, position: [0, 0, 5] }}>
-      {/* <color attach="background" args={["#d0d0d0"]} /> */}
-      {/* <fog attach="fog" args={["#d0d0d0", 5, 10]} /> */}
+    <Canvas dpr={[1, 1]} camera={{ fov: 35, position: [0, 0, 5] }}>
       <Suspense fallback={"loading"}>
-        <Environment preset="sunset" />
+        <Environment preset="city" />
         <ambientLight intensity={2} />
         <directionalLight position={[10, 10, 0]} intensity={1.5} />
         <directionalLight position={[-10, 10, 5]} intensity={1} />
@@ -47,7 +46,43 @@ function Thomas() {
     []
   );
 
+  materials["Material.001"].transparent = true;
+  materials["Material.003"].transparent = true;
+  materials["Material.003"].opacity = 0;
+  materials["Material.001"].opacity = 0;
+
   useEffect(() => {
+    gsap.to(materials["Material.001"], {
+      duration: 1,
+      delay: 3.5,
+      ease: "power4.out",
+      opacity: 1,
+    });
+    gsap.to(materials["Material.003"], {
+      duration: 1,
+      delay: 3,
+      ease: "power4.out",
+      opacity: 1,
+    });
+
+    gsap.to(ref.current.scale, {
+      duration: 1.5,
+      delay: 4,
+      // ease: "power4.out",
+      x: 1.5,
+      y: 1.5,
+      z: 1.5,
+    });
+
+    gsap.to(ref.current.position, {
+      duration: 1.5,
+      delay: 4,
+      // ease: "power4.out",
+      x: 0,
+      y: -2.2,
+      z: 0,
+    });
+
     gsap.to(ref.current.position, {
       duration: 1,
       delay: 1,
@@ -95,7 +130,7 @@ function Thomas() {
     // materials["Material.001"].color.copy(red).multiplyScalar(distance / 10);
     materials["Material.001"].metalness = 1;
     materials["Material.003"].metalness = 0.6;
-    materials["Material.001"].roughness = 0.3;
+    materials["Material.001"].roughness = 0;
     materials["Material.001"].color = red;
 
     materials["Material.003"].roughness = 0.1;
@@ -109,9 +144,9 @@ function Thomas() {
   });
   return (
     <primitive
-      flatShading
-      scale={1.6}
-      position={[0, -2.2, 0]}
+      smoothShading
+      scale={0.7}
+      position={[0.04, -0.99, 0]}
       rotation={[0, -HPI, 0]}
       ref={ref}
       object={scene}

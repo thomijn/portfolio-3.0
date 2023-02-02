@@ -1,16 +1,56 @@
+import { motion } from "framer-motion";
 import React from "react";
 import styled from "styled-components";
+
+import { transition } from "../Preloader/Preloader";
 
 const Hero = () => {
   return (
     <Wrapper>
-      <MaxWidthWrapper>
-        <Creative>Creative</Creative>
-        <Developer>Developer</Developer>
+      <MaxWidthWrapper style={{ height: "calc(100vh - 300px)" }}>
+        <MaskSpan>
+          <Creative
+            initial={{ opacity: 0, y: 200, skewY: 5 }}
+            animate={{ opacity: 1, y: 0, skewY: 0 }}
+            transition={{ ...transition, delay: 3 }}
+          >
+            Creative
+          </Creative>
+        </MaskSpan>
+        <MaskSpan
+          style={{
+            position: "absolute",
+            bottom: 0,
+            right: "25px",
+            width: "100%",
+            height: "100%",
+          }}
+        >
+          <Developer
+            initial={{ opacity: 0, y: 200, skewY: 5 }}
+            animate={{ opacity: 1, y: 0, skewY: 0 }}
+            transition={{ ...transition, delay: 3.2 }}
+          >
+            Developer
+          </Developer>
+        </MaskSpan>
       </MaxWidthWrapper>
     </Wrapper>
   );
 };
+
+const MaskSpan = styled.span`
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 250px;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    height: 80px !important;
+    position: relative !important;
+  }
+`;
 
 export const MaxWidthWrapper = styled.div`
   max-width: 1300px;
@@ -18,22 +58,25 @@ export const MaxWidthWrapper = styled.div`
   width: 100%;
   padding-inline: 25px;
   position: relative;
-  height: 100%;
 
   @media (min-width: 1600px) {
     max-width: 1500px;
   }
 `;
 
-const Creative = styled.h1`
-  font-size: calc(1rem + 6vw);
+const Creative = styled(motion.h1)`
+  font-size: calc(8rem + 6vw);
   font-weight: 400;
-  color: rgba(0, 0, 0, 0.8);
+  color: #333333;
   text-transform: uppercase;
   margin: 0;
   padding: 0;
   line-height: 1;
   z-index: 1;
+
+  @media (max-width: 768px) {
+    font-size: calc(4rem + 6vw);
+  }
 `;
 
 const Developer = styled(Creative)`
@@ -41,6 +84,10 @@ const Developer = styled(Creative)`
   bottom: 0px;
   right: 25px;
   width: auto;
+
+  @media (max-width: 768px) {
+    right: 0px;
+  }
 `;
 
 const Wrapper = styled.div`

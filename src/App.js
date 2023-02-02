@@ -1,16 +1,23 @@
 import Hero from "./components/Hero/Hero";
 import Intro from "./components/Intro/Intro";
-import { Three } from "./components/Three";
+import Scene from "./components/Scene";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
+
 import Lenis from "@studio-freight/lenis";
+import Header from "./components/Header/Header";
+import Preloader from "./components/Preloader/Preloader";
 
 // const lenis = new Lenis({
 //   duration: 1.2,
-//   easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)), // https://easings.net/en#easeOutExpo
+//   easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
 //   direction: "vertical", // vertical, horizontal
 //   gestureDirection: "vertical", // vertical, horizontal, both
 //   smooth: true,
+//   mouseMultiplier: 1,
 //   smoothTouch: false,
 //   touchMultiplier: 2,
+//   infinite: false,
 // });
 
 // //get scroll value
@@ -20,20 +27,36 @@ import Lenis from "@studio-freight/lenis";
 
 // function raf(time) {
 //   lenis.raf(time);
-
 //   requestAnimationFrame(raf);
 // }
 
 // requestAnimationFrame(raf);
 
 const App = () => {
+  //remove preloader with state after 2.5 seconds
+  const [preloader, setPreloader] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setPreloader(false);
+    }, 2000);
+  }, []);
+
   return (
     <>
-      {/* <div style={{ position: "absolute", top: 0, width: "100%" }}> */}
-      <Three />
-      {/* </div> */}
+      {/* <AnimatePresence>
+        {preloader && <Preloader key="preloader" />}
+      </AnimatePresence> */}
+      <motion.div
+        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        transition={{ duration: 1, delay: 2.8 }}
+        style={{ position: "absolute", top: 0, width: "100%", height: "100%" }}
+      >
+        <Scene />
+      </motion.div>
+      {/* <Header />
       <Hero />
-      <Intro />
+      <Intro /> */}
     </>
   );
 };
