@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import Lenis from "@studio-freight/lenis";
 import Header from "./components/Header/Header";
 import Preloader from "./components/Preloader/Preloader";
+import Projects from "./components/Projects/Projects";
+import Contact from "./components/Contact/Contact";
 
 // const lenis = new Lenis({
 //   duration: 1.2,
@@ -43,9 +45,6 @@ const App = () => {
 
   return (
     <>
-      {/* <AnimatePresence>
-        {preloader && <Preloader key="preloader" />}
-      </AnimatePresence> */}
       <motion.div
         animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}
@@ -54,9 +53,11 @@ const App = () => {
       >
         <Scene />
       </motion.div>
-      {/* <Header />
+      <Header />
       <Hero />
-      <Intro /> */}
+      <Intro />
+      <Projects />
+      <Contact />
     </>
   );
 };

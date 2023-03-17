@@ -6,35 +6,28 @@ import { transition } from "../Preloader/Preloader";
 
 const Hero = () => {
   return (
-    <Wrapper>
-      <MaxWidthWrapper style={{ height: "calc(100vh - 300px)" }}>
+    <Wrapper className="hero">
+      <MaxWidthWrapper style={{ top: -100 }}>
         <MaskSpan>
           <Creative
             initial={{ opacity: 0, y: 200, skewY: 5 }}
             animate={{ opacity: 1, y: 0, skewY: 0 }}
-            transition={{ ...transition, delay: 3 }}
+            transition={{ ...transition, delay: 2 }}
           >
             Creative
           </Creative>
         </MaskSpan>
-        <MaskSpan
-          style={{
-            position: "absolute",
-            bottom: 0,
-            right: "25px",
-            width: "100%",
-            height: "100%",
-          }}
-        >
+        <MaskSpan>
           <Developer
             initial={{ opacity: 0, y: 200, skewY: 5 }}
             animate={{ opacity: 1, y: 0, skewY: 0 }}
-            transition={{ ...transition, delay: 3.2 }}
+            transition={{ ...transition, delay: 2.2 }}
           >
             Developer
           </Developer>
         </MaskSpan>
       </MaxWidthWrapper>
+      {/* <GradientDiv /> */}
     </Wrapper>
   );
 };
@@ -43,7 +36,7 @@ const MaskSpan = styled.span`
   position: relative;
   display: flex;
   align-items: center;
-  height: 250px;
+  /* height: 250px; */
   overflow: hidden;
 
   @media (max-width: 768px) {
@@ -53,7 +46,7 @@ const MaskSpan = styled.span`
 `;
 
 export const MaxWidthWrapper = styled.div`
-  max-width: 1300px;
+  max-width: 1200px;
   margin: 0 auto;
   width: 100%;
   padding-inline: 25px;
@@ -65,25 +58,26 @@ export const MaxWidthWrapper = styled.div`
 `;
 
 const Creative = styled(motion.h1)`
-  font-size: calc(8rem + 6vw);
-  font-weight: 400;
-  color: #333333;
+  font-family: "Satoshi Variable";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 86px;
+  letter-spacing: 0.4em;
+
+  color: #d8d8d8;
   text-transform: uppercase;
   margin: 0;
   padding: 0;
-  line-height: 1;
   z-index: 1;
 
   @media (max-width: 768px) {
-    font-size: calc(4rem + 6vw);
+    /* font-size: calc(4rem + 6vw); */
   }
 `;
 
 const Developer = styled(Creative)`
-  position: absolute;
-  bottom: 0px;
-  right: 25px;
-  width: auto;
+  margin-left: 75px;
 
   @media (max-width: 768px) {
     right: 0px;
@@ -91,12 +85,29 @@ const Developer = styled(Creative)`
 `;
 
 const Wrapper = styled.div`
+  pointer-events: none;
   width: 100%;
-  height: calc(100vh - 300px);
+  height: calc(100vh - 100px);
   z-index: 1;
   position: relative;
-  margin-top: 150px;
-  margin-bottom: 50px;
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+`;
+
+const GradientDiv = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: rgb(26, 26, 26);
+  background: linear-gradient(
+    180deg,
+    rgba(26, 26, 26, 0) 0%,
+    rgba(26, 26, 26, 1) 85%
+  );
+  z-index: 2;
 `;
 
 export default Hero;

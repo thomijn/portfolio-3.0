@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { createNoise2D } from "simplex-noise";
+
 const noise2D = createNoise2D();
 
 const Terrain = () => {

@@ -14,14 +14,14 @@ const Hamburger = () => {
       backgroundColor: "#fff",
     },
     openBottom: {
-      y: -5,
+      y: -4,
       rotate: -45,
       backgroundColor: "#fff",
     },
     closed: {
       y: 0,
       rotate: 0,
-      backgroundColor: "#333333",
+      backgroundColor: "#fff",
     },
   };
 
@@ -39,8 +39,20 @@ const Hamburger = () => {
         // initial={{ opacity: 0 }}
         onClick={() => toggleMenu(!menu)}
       >
-        <Stripe animate={menu ? "open" : "closed"} variants={variants} />
-        <Stripe animate={menu ? "openBottom" : "closed"} variants={variants} />
+        <Stripe
+          transition={{
+            ease: [0.6, 0.05, -0.01, 0.9],
+          }}
+          animate={menu ? "open" : "closed"}
+          variants={variants}
+        />
+        <Stripe
+          transition={{
+            ease: [0.6, 0.05, -0.01, 0.9],
+          }}
+          animate={menu ? "openBottom" : "closed"}
+          variants={variants}
+        />
       </Wrapper>
     </MotionConfig>
   );

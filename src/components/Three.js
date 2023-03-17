@@ -4,19 +4,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { gsap } from "gsap";
 
 import * as THREE from "three";
-import {
-  useGLTF,
-  useAnimations,
-  Reflector,
-  useTexture,
-  OrbitControls,
-  Environment,
-} from "@react-three/drei";
-import { Effects } from "./Effects";
+import { useGLTF, useAnimations, Environment } from "@react-three/drei";
 
 const HPI = Math.PI / 2;
 const red = new THREE.Color("#fac020");
-const white = new THREE.Color("#fff");
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -54,13 +45,13 @@ function Thomas() {
   useEffect(() => {
     gsap.to(materials["Material.001"], {
       duration: 1,
-      delay: 3.5,
+      delay: 2.5,
       ease: "power4.out",
       opacity: 1,
     });
     gsap.to(materials["Material.003"], {
       duration: 1,
-      delay: 3,
+      delay: 2,
       ease: "power4.out",
       opacity: 1,
     });

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { useGLTF, useAnimations, Plane } from "@react-three/drei";
+import { useGLTF, useAnimations, Plane, Environment } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Leva, useControls } from "leva";
 import { gsap } from "gsap";
@@ -7,6 +7,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Terrain from "./Terrain";
 import * as THREE from "three";
 import { Floating } from "./Floating";
+import ThreeShapes from "./ThreeShapes";
+import { Debug, Physics } from "@react-three/rapier";
 
 function Model(props) {
   const group = useRef();
@@ -87,8 +89,7 @@ export default function Scene() {
       </group> */}
 
       <Floating scale={1} position={[0, 0.5, 0]} />
-
-      <color attach="background" args={["#000"]} />
+      <color attach="background" args={["#4a4a4a"]} />
       <ambientLight intensity={0.2} />
       <directionalLight
         intensity={0.2}
@@ -134,6 +135,9 @@ export default function Scene() {
         <shadowMaterial color="#efefef" />
       </Plane> */}
       <Terrain />
+      <ThreeShapes />
+      <Environment preset="warehouse" />
+      <CameraControls />
       {/* <OrbitControls /> */}
     </Canvas>
   );
@@ -163,6 +167,30 @@ const Light = () => {
       color="white"
     />
   );
+};
+
+const CameraControls = () => {
+  const { camera } = useThree();
+
+  ///gsap scrolltrigger
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.to(camera.position, {
+      duration: 1,
+      delay: 1,
+      // ease: "power2.in",
+      y: -2,
+      scrollTrigger: {
+        trigger: ".hero",
+        start: 0,
+        end: 1000,
+        scrub: true,
+        // markers: true,
+      },
+    });
+  }, []);
+
+  return null;
 };
 
 useGLTF.preload("/thomas-idle-v1.glb");
