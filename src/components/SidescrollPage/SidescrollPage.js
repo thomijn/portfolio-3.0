@@ -69,11 +69,10 @@ export default function SidescrollPage() {
 
   return (
     <Wrapper textColor={project.textColor} ref={component}>
-      <div ref={slider} className="container">
+      <div style={{}} ref={slider} className="container">
         <Intro
           textColor={project.textColor}
           backgroundColor={project.backgroundColor}
-          style={{ width: "40vw" }}
           className="description panel"
         >
           <h1>{project.title}</h1>
@@ -107,7 +106,6 @@ export default function SidescrollPage() {
           style={{
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "center",
             width: "100%",
           }}
         >
@@ -118,7 +116,9 @@ export default function SidescrollPage() {
           <div>
             {projects
               .filter((project) => project.link !== location.pathname)
+              .sort(() => Math.random() - 0.5)
               .slice(0, 2)
+              //randomize
               .map((project, index) => {
                 return (
                   <Project
@@ -137,7 +137,7 @@ export default function SidescrollPage() {
 }
 
 const Header = styled(motion.h2)`
-  font-family: "Satoshi Variable";
+  font-family: "Satoshi";
   font-style: normal;
   font-weight: 500;
   font-size: 40px;
@@ -155,7 +155,7 @@ const Section = styled.div`
   justify-content: center;
   align-items: center;
   color: #ffffff;
-  font-family: "Satoshi Variable";
+  font-family: "Satoshi";
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
@@ -166,7 +166,7 @@ const Section = styled.div`
     max-width: 800px;
     /* aspect-ratio: 1.7/1; */
     height: auto;
-    max-height: 600px;
+    max-height: 500px;
     object-fit: contain;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
   }
@@ -193,6 +193,26 @@ const Section = styled.div`
     display: flex;
     gap: 64px;
   }
+
+  @media (max-height: 900px) {
+    .two-diagonal {
+      img {
+        max-height: 350px;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 800px;
+
+    img {
+      width: 100%;
+      max-width: 500px;
+      /* aspect-ratio: 1.7/1; */
+      height: auto;
+      max-height: 400px;
+    }
+  }
 `;
 
 const Intro = styled.div`
@@ -207,7 +227,7 @@ const Intro = styled.div`
     color: ${(props) => props.textColor || "#ffffff"};
   }
   p {
-    font-family: "Satoshi Variable";
+    font-family: "Satoshi";
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -220,7 +240,7 @@ const Intro = styled.div`
 
   a {
     color: ${(props) => props.textColor || "#ffffff"};
-    font-family: "Satoshi Variable";
+    font-family: "Satoshi";
     font-style: normal;
     text-underline-offset: 4px;
   }
@@ -230,6 +250,10 @@ const Intro = styled.div`
     bottom: 32px;
     right: 32px;
     width: 64px;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 
   .techWrapper {
@@ -237,12 +261,12 @@ const Intro = styled.div`
     flex-wrap: wrap;
     gap: 8px;
     margin-top: 16px;
-    font-family: "Satoshi Variable";
+    font-family: "Satoshi";
     font-style: normal;
 
     p {
       margin-block: 0px;
-      font-family: "Satoshi Variable";
+      font-family: "Satoshi";
       font-style: normal;
       font-weight: 400;
       font-size: 16px;
@@ -251,6 +275,11 @@ const Intro = styled.div`
       color: ${(props) => props.textColor || "#ffffff"};
     }
   }
+
+  @media (max-width: 768px) {
+    width: 100vw;
+    height: 100vh;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -258,16 +287,26 @@ const Wrapper = styled.div`
     width: 600vw;
     height: 100vh;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: no-wrap;
 
     h1 {
-      font-family: "Satoshi Variable";
+      font-family: "Satoshi";
       font-style: normal;
       font-weight: 700;
       font-size: 64px;
       line-height: 86px;
       letter-spacing: 0.4em;
       color: ${(props) => props.textColor || "#ffffff"};
+
+      @media (max-width: 1500px) {
+        font-size: 40px;
+        line-height: 44px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      width: calc(100vw + (6 * 800px)) !important;
+      height: 100vh;
     }
   }
 
@@ -277,8 +316,28 @@ const Wrapper = styled.div`
     height: 40vh;
     background: #fff;
 
+    > div {
+      align-items: center;
+    }
+
     .arrow-footer {
       margin-top: 8px;
+    }
+
+    @media (max-width: 768px) {
+      > div {
+        flex-direction: column;
+        align-items: flex-start;
+
+        h2 {
+          margin-top: 16px;
+          font-size: 32px;
+        }
+
+        .arrow-footer {
+          display: none;
+        }
+      }
     }
   }
 

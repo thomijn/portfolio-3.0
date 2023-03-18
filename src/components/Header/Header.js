@@ -32,7 +32,7 @@ const Wrapper = styled(motion.div)`
   align-items: center;
 
   h2 {
-    font-family: "Satoshi Variable";
+    font-family: "Satoshi";
     font-style: normal;
     font-weight: 700;
     font-size: 12px;

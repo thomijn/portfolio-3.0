@@ -2,15 +2,9 @@ import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
 import { motion } from "framer-motion-3d";
 import { useFrame } from "@react-three/fiber";
-import { Box, Sphere, Cone } from "@react-three/drei";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-  BallCollider,
-  Physics,
-  RigidBody,
-  CylinderCollider,
-} from "@react-three/rapier";
+import useWindowSize from "../hooks/useWindowSize";
 
 const material = new THREE.MeshPhysicalMaterial({
   color: new THREE.Color("#fff").convertSRGBToLinear(),
@@ -24,37 +18,68 @@ function ThreeShapes() {
   const boxRef = useRef();
   const sphereRef = useRef();
   const coneRef = useRef();
+  const { width } = useWindowSize();
+  let mm = gsap.matchMedia();
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".hero",
-        start: 800,
-        end: 1300,
-        toggleActions: "play reverse play reverse",
-      },
+    mm.add("(min-width: 800px)", () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".hero",
+          start: 800,
+          end: 1300,
+          toggleActions: "play reverse play reverse",
+        },
+      });
+
+      tl.fromTo(
+        groupRef.current.scale,
+        {
+          x: 0,
+          y: 0,
+          z: 0,
+        },
+        {
+          ease: "power4.out",
+          duration: 0.5,
+          x: 0.4,
+          y: 0.4,
+          z: 0.4,
+        }
+      );
     });
 
-    tl.fromTo(
-      groupRef.current.scale,
-      {
-        x: 0,
-        y: 0,
-        z: 0,
-      },
-      {
-        ease: "power4.out",
-        duration: 0.5,
-        x: 0.4,
-        y: 0.4,
-        z: 0.4,
-      }
-    );
+    mm.add("(max-width: 799px)", () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".hero",
+          start: 1300,
+          end: 1800,
+          toggleActions: "play reverse play reverse",
+        },
+      });
 
-    return () => {
-      tl.kill();
-    };
+      tl.fromTo(
+        groupRef.current.scale,
+        {
+          x: 0,
+          y: 0,
+          z: 0,
+        },
+        {
+          ease: "power4.out",
+          duration: 0.5,
+          x: 0.4,
+          y: 0.4,
+          z: 0.4,
+        }
+      );
+    });
+
+    // return () => {
+    //   tl.kill();
+    // };
   }, []);
 
   useFrame(({ mouse }) => {
@@ -73,7 +98,7 @@ function ThreeShapes() {
   });
 
   return (
-    <group scale={0.4} position={[2, -5, 0]} ref={groupRef}>
+    <group scale={0.4} position={[width < 768 ? 1 : 2, -5, 0]} ref={groupRef}>
       <motion.mesh ref={boxRef} material={material}>
         <boxBufferGeometry args={[1.5, 1.5, 1.5]} />
       </motion.mesh>

@@ -43,7 +43,7 @@ const Wrapper = styled(motion.div)`
 `;
 
 const Header = styled(motion.h2)`
-  font-family: "Satoshi Variable";
+  font-family: "Satoshi";
   font-style: normal;
   font-weight: 700;
   font-size: 64px;
@@ -55,7 +55,7 @@ const Header = styled(motion.h2)`
 `;
 
 const TextBig = styled(motion.p)`
-  font-family: "Satoshi Variable";
+  font-family: "Satoshi";
   font-style: normal;
   font-weight: 500;
   font-size: 32px;
@@ -66,7 +66,7 @@ const TextBig = styled(motion.p)`
 `;
 
 const TextSmall = styled(motion.p)`
-  font-family: "Satoshi Variable";
+  font-family: "Satoshi";
   font-style: normal;
   font-weight: 500;
   font-size: 20px;

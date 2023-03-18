@@ -7,7 +7,7 @@ import { transition } from "../Preloader/Preloader";
 const Hero = () => {
   return (
     <Wrapper className="hero">
-      <MaxWidthWrapper style={{ top: -100 }}>
+      <MaxWidthWrapper style={{ paddingBottom: 16 }}>
         <MaskSpan>
           <Creative
             initial={{ opacity: 0, y: 200, skewY: 5 }}
@@ -26,8 +26,16 @@ const Hero = () => {
             Developer
           </Developer>
         </MaskSpan>
+        <MaskSpan>
+          <Developer
+            initial={{ opacity: 0, y: 200, skewY: 5 }}
+            animate={{ opacity: 1, y: 0, skewY: 0 }}
+            transition={{ ...transition, delay: 2.3 }}
+          >
+            ↓
+          </Developer>
+        </MaskSpan>
       </MaxWidthWrapper>
-      {/* <GradientDiv /> */}
     </Wrapper>
   );
 };
@@ -40,7 +48,7 @@ const MaskSpan = styled.span`
   overflow: hidden;
 
   @media (max-width: 768px) {
-    height: 80px !important;
+    height: 50px !important;
     position: relative !important;
   }
 `;
@@ -58,7 +66,7 @@ export const MaxWidthWrapper = styled.div`
 `;
 
 const Creative = styled(motion.h1)`
-  font-family: "Satoshi Variable";
+  font-family: "Satoshi";
   font-style: normal;
   font-weight: 700;
   font-size: 64px;
@@ -72,12 +80,12 @@ const Creative = styled(motion.h1)`
   z-index: 1;
 
   @media (max-width: 768px) {
-    /* font-size: calc(4rem + 6vw); */
+    font-size: calc(1rem + 5vw);
   }
 `;
 
 const Developer = styled(Creative)`
-  margin-left: 75px;
+  /* margin-left: 75px; */
 
   @media (max-width: 768px) {
     right: 0px;
@@ -93,6 +101,10 @@ const Wrapper = styled.div`
   margin-top: 100px;
   display: flex;
   align-items: center;
+
+  @media (max-width: 768px) {
+    align-items: flex-end;
+  }
 `;
 
 const GradientDiv = styled.div`

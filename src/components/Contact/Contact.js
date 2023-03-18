@@ -8,7 +8,9 @@ const Contact = () => {
     <Wrapper className="Contact">
       <MaxWidthWrapper>
         <Header>Would love to hear from you ↓.</Header>
-        <Email>Thomas.gertenbach99@gmail.com</Email>
+        <Email href="mailto:thomas.gertenbach99@gmail.com">
+          Thomas.gertenbach99@gmail.com
+        </Email>
       </MaxWidthWrapper>
       <MaxWidthWrapper
         style={{ maxWidth: 1500, paddingBlock: 32 }}
@@ -17,9 +19,27 @@ const Contact = () => {
         <LinksWrapper>
           <motion.a>Thomas Gertenbach</motion.a>
           <div>
-            <motion.a>Github, </motion.a>
-            <motion.a>LinkedIn, </motion.a>
-            <motion.a>Twitter</motion.a>
+            <motion.a
+              href="https://github.com/thomijn"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Github,{" "}
+            </motion.a>
+            <motion.a
+              href="https://www.linkedin.com/in/thomas-gertenbach-5a6b18178/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              LinkedIn,{" "}
+            </motion.a>
+            <motion.a
+              href="https://twitter.com/thommie99"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Twitter
+            </motion.a>
           </div>
         </LinksWrapper>
       </MaxWidthWrapper>
@@ -33,10 +53,15 @@ const Wrapper = styled(motion.div)`
   background-color: #fff;
   position: relative;
   padding-top: 128px;
+
+  @media (max-width: 768px) {
+    margin-top: 0;
+    padding-top: 64px;
+  }
 `;
 
 const Header = styled(motion.h2)`
-  font-family: "Satoshi Variable";
+  font-family: "Satoshi";
   font-style: normal;
   font-weight: 500;
   font-size: 40px;
@@ -52,7 +77,7 @@ const Header = styled(motion.h2)`
 `;
 
 const Email = styled(motion.a)`
-  font-family: "Satoshi Variable";
+  font-family: "Satoshi";
   font-style: normal;
   font-weight: 500;
   font-size: 32px;
@@ -67,6 +92,7 @@ const Email = styled(motion.a)`
     font-size: 18px;
     line-height: 43px;
     word-break: break-all;
+    margin-bottom: 32px;
   }
 `;
 
@@ -75,6 +101,11 @@ const LinksWrapper = styled(motion.div)`
   justify-content: space-between;
   align-items: center;
   /* padding: 0 25px; */
+
+  a {
+    text-decoration: none;
+    color: #000000;
+  }
 `;
 
 export default Contact;

@@ -6,11 +6,13 @@ import React, { useRef, useEffect } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import useWindowSize from "../hooks/useWindowSize";
 
 export function Floating(props) {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF("/me-floating.glb");
   const { actions } = useAnimations(animations, group);
+  const { width } = useWindowSize();
 
   useEffect(() => {
     actions["Armature|mixamo.com|Layer0"].play();
@@ -21,64 +23,128 @@ export function Floating(props) {
   let previousPosition = new THREE.Vector3();
   useFrame(({ mouse }) => {
     //lerp light position
-    group.current.position.x = THREE.MathUtils.lerp(
-      group.current.position.x,
-      mouse.x * 5,
-      0.05
-    );
-    group.current.position.z = THREE.MathUtils.lerp(
-      group.current.position.z,
-      -mouse.y * 20,
-      0.05
-    );
 
-    // tilt model when it is moving in a direction based on previous position
-    //get distance in x axis
-    let distanceX = group.current.position.x - previousPosition.x;
-    let distanceY = group.current.position.z - previousPosition.z;
+    if (width > 768) {
+      group.current.position.x = THREE.MathUtils.lerp(
+        group.current.position.x,
+        mouse.x * 5,
+        0.05
+      );
+      group.current.position.z = THREE.MathUtils.lerp(
+        group.current.position.z,
+        -mouse.y * 20,
+        0.05
+      );
 
-    let distance = previousPosition.distanceTo(group.current.position);
+      // tilt model when it is moving in a direction based on previous position
+      //get distance in x axis
+      let distanceX = group.current.position.x - previousPosition.x;
+      let distanceY = group.current.position.z - previousPosition.z;
 
-    // scale animation timescale based on distance
-    actions["Armature|mixamo.com|Layer0"].timeScale = THREE.MathUtils.lerp(
-      actions["Armature|mixamo.com|Layer0"].timeScale,
-      distance * 10,
-      0.1
-    );
+      let distance = previousPosition.distanceTo(group.current.position);
 
-    if (group.current.position.x > previousPosition.x) {
-      group.current.rotation.z = THREE.MathUtils.lerp(
-        group.current.rotation.z,
-        distanceX * 2,
+      // scale animation timescale based on distance
+      actions["Armature|mixamo.com|Layer0"].timeScale = THREE.MathUtils.lerp(
+        actions["Armature|mixamo.com|Layer0"].timeScale,
+        distance * 10,
         0.1
       );
-    } else {
-      if (group.current.position.x < previousPosition.x) {
+
+      if (group.current.position.x > previousPosition.x) {
         group.current.rotation.z = THREE.MathUtils.lerp(
           group.current.rotation.z,
           distanceX * 2,
           0.1
         );
+      } else {
+        if (group.current.position.x < previousPosition.x) {
+          group.current.rotation.z = THREE.MathUtils.lerp(
+            group.current.rotation.z,
+            distanceX * 2,
+            0.1
+          );
+        }
       }
-    }
 
-    if (group.current.position.z > previousPosition.z) {
-      group.current.rotation.x = THREE.MathUtils.lerp(
-        group.current.rotation.x,
-        distanceY * 0.5,
-        0.1
-      );
-    } else {
-      if (group.current.position.z < previousPosition.z) {
+      if (group.current.position.z > previousPosition.z) {
         group.current.rotation.x = THREE.MathUtils.lerp(
           group.current.rotation.x,
           distanceY * 0.5,
           0.1
         );
+      } else {
+        if (group.current.position.z < previousPosition.z) {
+          group.current.rotation.x = THREE.MathUtils.lerp(
+            group.current.rotation.x,
+            distanceY * 0.5,
+            0.1
+          );
+        }
       }
-    }
 
-    previousPosition = group.current.position.clone();
+      previousPosition = group.current.position.clone();
+    } else {
+      //float with sin wave
+
+      group.current.position.x = THREE.MathUtils.lerp(
+        group.current.position.x,
+        Math.sin(Date.now() * 0.0005) * 0.5,
+        0.1
+      );
+      group.current.position.z = THREE.MathUtils.lerp(
+        group.current.position.z,
+        Math.sin(Date.now() * 0.0005) * 0.5,
+        0.1
+      );
+
+      // tilt model when it is moving in a direction based on previous position
+      //get distance in x axis
+      let distanceX = group.current.position.x - previousPosition.x;
+      let distanceY = group.current.position.z - previousPosition.z;
+
+      let distance = previousPosition.distanceTo(group.current.position);
+
+      // scale animation timescale based on distance
+      actions["Armature|mixamo.com|Layer0"].timeScale = THREE.MathUtils.lerp(
+        actions["Armature|mixamo.com|Layer0"].timeScale,
+        distance * 1000,
+        0.1
+      );
+
+      if (group.current.position.x > previousPosition.x) {
+        group.current.rotation.z = THREE.MathUtils.lerp(
+          group.current.rotation.z,
+          distanceX * 2,
+          0.1
+        );
+      } else {
+        if (group.current.position.x < previousPosition.x) {
+          group.current.rotation.z = THREE.MathUtils.lerp(
+            group.current.rotation.z,
+            distanceX * 2,
+            0.1
+          );
+        }
+      }
+
+      if (group.current.position.z > previousPosition.z) {
+        group.current.rotation.x = THREE.MathUtils.lerp(
+          group.current.rotation.x,
+          distanceY * 0.5,
+          0.1
+        );
+      } else {
+        if (group.current.position.z < previousPosition.z) {
+          group.current.rotation.x = THREE.MathUtils.lerp(
+            group.current.rotation.x,
+            distanceY * 0.5,
+            0.1
+          );
+        }
+      }
+
+      previousPosition = group.current.position.clone();
+    }
   });
 
   return (

@@ -349,7 +349,7 @@ export const Project = ({ title, link, small }) => {
 };
 
 const Header = styled(motion.h2)`
-  font-family: "Satoshi Variable";
+  font-family: "Satoshi";
   font-style: normal;
   font-weight: 700;
   font-size: 64px;
@@ -374,7 +374,7 @@ const StyledProject = styled.div`
   overflow: hidden;
   position: relative;
   h3 {
-    font-family: "Satoshi Variable";
+    font-family: "Satoshi";
     font-style: normal;
     font-weight: 700;
     font-size: 40px;
