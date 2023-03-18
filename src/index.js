@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Ertg from "./projects/Ertg";
+import Personal from "./projects/Personal";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/personal",
-    element: <Ertg />,
+    element: <Personal />,
   },
 ]);
 

@@ -28,6 +28,13 @@ import sleeer1 from "../../images/sleeer-1.jpg";
 import sleeer2 from "../../images/sleeer-2.jpg";
 import sleeer3 from "../../images/sleeer-3.jpg";
 
+import personal1 from "../../images/personal-1.jpg";
+import personal2 from "../../images/personal-2.jpg";
+import personal3 from "../../images/personal-3.jpg";
+import personal4 from "../../images/personal-4.jpg";
+import personal5 from "../../images/personal-5.jpg";
+import personal6 from "../../images/personal-6.jpg";
+
 export const projects = [
   {
     title: "ERTG",
@@ -261,7 +268,117 @@ export const projects = [
   },
   {
     title: "PERSONAL",
+    text: (
+      <>
+        <p>
+          Throughout my journey, I've enjoyed exploring my interests through a
+          variety of personal projects and experiments. While some of these
+          projects are still in progress or experimental in nature, I finish
+          them with enthusiasm and enjoy sharing them with others. I believe
+          that each project has its own unique value and can inspire others.
+          <br /> <br />
+          On my portfolio, I've highlighted a selection of my personal projects
+          and experiments that I believe are worth sharing. These projects
+          showcase my journey as a creator and my passion for lifelong learning.
+          I hope that they inspire you in your own creative endeavors and I
+          welcome any feedback or questions you may have. Thank you for taking
+          the time to explore my work!
+        </p>
+      </>
+    ),
     link: "/personal",
+    backgroundColor: "#111111",
+    sections: [
+      {
+        type: "one",
+        images: [personal1],
+        backgroundColor: "#fff",
+        text: (
+          <p>
+            An experiment recreating this Dribbble shot:{" "}
+            <a href="https://dribbble.com/shots/15110000-3D-Text-Animation">
+              CINEGRAM | Ruslan Siiz
+            </a>
+            <br /> <br />
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://w19ul4.csb.app/"
+            >
+              Check it out here!
+            </a>
+          </p>
+        ),
+      },
+      {
+        type: "one",
+        images: [personal5],
+        backgroundColor: "#fff",
+        text: (
+          <p>
+            The website of the volleyball club vv Flits.
+            <br /> <br />
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.vvflits.nl/"
+            >
+              Check it out here!
+            </a>
+          </p>
+        ),
+      },
+      {
+        type: "two",
+        images: [personal2, personal3],
+        backgroundColor: "#fff",
+        text: (
+          <p>
+            Small mobile web app for the wedding day of my sister.
+            <br /> <br />
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://jonathanenmarith.vercel.app/"
+            >
+              Check it out here!
+            </a>
+          </p>
+        ),
+      },
+      {
+        type: "one",
+        images: [personal6],
+        backgroundColor: "#fff",
+        text: (
+          <p>
+            Little Three.js & GSAP experiment with a custom made bottle.
+            <br /> <br />
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://wine-r3f.vercel.app/"
+            >
+              Check it out here!
+            </a>
+          </p>
+        ),
+      },
+      {
+        type: "one",
+        images: [personal4],
+        backgroundColor: "#fff",
+        text: (
+          <p>
+            First Three.js experiment with baking in Blender.
+            <br /> <br />
+            <a>
+              <a href="https://twopine-3d.vercel.app/">Check it out here!</a>
+            </a>
+          </p>
+        ),
+      },
+    ],
   },
 ];
 
