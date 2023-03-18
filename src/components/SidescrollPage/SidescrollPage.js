@@ -198,6 +198,9 @@ const Section = styled.div`
     .two-diagonal {
       img {
         max-height: 350px;
+        box-shadow: none;
+        filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.05))
+          drop-shadow(0 0 10px rgba(0, 0, 0, 0.05));
       }
     }
   }
@@ -227,6 +230,7 @@ const Intro = styled.div`
     color: ${(props) => props.textColor || "#ffffff"};
   }
   p {
+    pointer-events: none;
     font-family: "Satoshi";
     font-style: normal;
     font-weight: 400;
@@ -239,6 +243,8 @@ const Intro = styled.div`
   }
 
   a {
+    pointer-events: all;
+
     color: ${(props) => props.textColor || "#ffffff"};
     font-family: "Satoshi";
     font-style: normal;
@@ -288,7 +294,7 @@ const Wrapper = styled.div`
     height: 100vh;
     display: flex;
     flex-wrap: no-wrap;
-
+    overflow-x: hidden;
     h1 {
       font-family: "Satoshi";
       font-style: normal;
@@ -325,6 +331,7 @@ const Wrapper = styled.div`
     }
 
     @media (max-width: 768px) {
+      height: 250px;
       > div {
         flex-direction: column;
         align-items: flex-start;
