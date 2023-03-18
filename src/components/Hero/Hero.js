@@ -1,13 +1,16 @@
 import { motion } from "framer-motion";
 import React from "react";
 import styled from "styled-components";
+import useWindowSize from "../../hooks/useWindowSize";
 
 import { transition } from "../Preloader/Preloader";
 
 const Hero = () => {
+  const { width } = useWindowSize();
+
   return (
     <Wrapper className="hero">
-      <MaxWidthWrapper style={{ paddingBottom: 16 }}>
+      <MaxWidthWrapper style={{ paddingBottom: width < 768 ? 86 : 16 }}>
         <MaskSpan>
           <Creative
             initial={{ opacity: 0, y: 200, skewY: 5 }}

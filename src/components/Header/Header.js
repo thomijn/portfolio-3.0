@@ -13,7 +13,7 @@ const Header = () => {
     >
       <MaxWidthWrapper style={{ maxWidth: 1500 }} className="flex">
         <h2>THOMAS GERTENBACH</h2>
-        <Hamburger />
+        {/* <Hamburger /> */}
       </MaxWidthWrapper>
     </Wrapper>
   );

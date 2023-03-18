@@ -97,53 +97,12 @@ export function Floating(props) {
         0.1
       );
 
-      // tilt model when it is moving in a direction based on previous position
-      //get distance in x axis
-      let distanceX = group.current.position.x - previousPosition.x;
-      let distanceY = group.current.position.z - previousPosition.z;
-
-      let distance = previousPosition.distanceTo(group.current.position);
-
       // scale animation timescale based on distance
       actions["Armature|mixamo.com|Layer0"].timeScale = THREE.MathUtils.lerp(
         actions["Armature|mixamo.com|Layer0"].timeScale,
-        distance * 1000,
+        1,
         0.1
       );
-
-      if (group.current.position.x > previousPosition.x) {
-        group.current.rotation.z = THREE.MathUtils.lerp(
-          group.current.rotation.z,
-          distanceX * 2,
-          0.1
-        );
-      } else {
-        if (group.current.position.x < previousPosition.x) {
-          group.current.rotation.z = THREE.MathUtils.lerp(
-            group.current.rotation.z,
-            distanceX * 2,
-            0.1
-          );
-        }
-      }
-
-      if (group.current.position.z > previousPosition.z) {
-        group.current.rotation.x = THREE.MathUtils.lerp(
-          group.current.rotation.x,
-          distanceY * 0.5,
-          0.1
-        );
-      } else {
-        if (group.current.position.z < previousPosition.z) {
-          group.current.rotation.x = THREE.MathUtils.lerp(
-            group.current.rotation.x,
-            distanceY * 0.5,
-            0.1
-          );
-        }
-      }
-
-      previousPosition = group.current.position.clone();
     }
   });
 
