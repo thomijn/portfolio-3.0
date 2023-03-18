@@ -295,6 +295,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-wrap: no-wrap;
     overflow-x: hidden;
+    overflow-y: hidden;
     h1 {
       font-family: "Satoshi";
       font-style: normal;
