@@ -197,7 +197,7 @@ const Section = styled.div`
   @media (max-height: 900px) {
     .two-diagonal {
       img {
-        max-height: 350px;
+        max-height: 300px;
         box-shadow: none;
         filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.05))
           drop-shadow(0 0 10px rgba(0, 0, 0, 0.05));
