@@ -39,7 +39,7 @@ const Wrapper = styled(motion.div)`
     line-height: 16px;
     letter-spacing: 0.4em;
 
-    color: #d8d8d8;
+    color:  #4D4D4D;
   }
 
   .flex {

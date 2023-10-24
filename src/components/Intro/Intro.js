@@ -60,7 +60,7 @@ const TextBig = styled(motion.p)`
   font-weight: 500;
   font-size: 32px;
   line-height: 43px;
-  color: #fff;
+  color: #4D4D4D;
   max-width: 700px;
   pointer-events: none;
 `;
@@ -74,7 +74,7 @@ const TextSmall = styled(motion.p)`
   max-width: 700px;
   pointer-events: none;
 
-  color: #fff;
+  color:#4D4D4D;
 `;
 
 export default Intro;

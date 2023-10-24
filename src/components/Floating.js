@@ -17,93 +17,24 @@ export function Floating(props) {
   useEffect(() => {
     actions["Armature|mixamo.com|Layer0"].play();
     //change timescale
-    actions["Armature|mixamo.com|Layer0"].timeScale = 0.5;
+    // actions["Armature|mixamo.com|Layer0"].timeScale = 0.5;
   }, [actions]);
 
-  let previousPosition = new THREE.Vector3();
-  useFrame(({ mouse }) => {
-    //lerp light position
+  useFrame((state, delta) => {
+    //lerp rotation with mouse
+    group.current.rotation.y = THREE.MathUtils.lerp(
+      group.current.rotation.y,
+      state.mouse.x * 0.5,
+      0.1
+    );
 
-    if (width > 768) {
-      group.current.position.x = THREE.MathUtils.lerp(
-        group.current.position.x,
-        mouse.x * 5,
-        0.05
-      );
-      group.current.position.z = THREE.MathUtils.lerp(
-        group.current.position.z,
-        -mouse.y * 20,
-        0.05
-      );
+    //lerp x position with mouse
+    group.current.position.x = THREE.MathUtils.lerp(
+      group.current.position.x,
+      state.mouse.x * 0.5 + 4,
+      0.1
+    );
 
-      // tilt model when it is moving in a direction based on previous position
-      //get distance in x axis
-      let distanceX = group.current.position.x - previousPosition.x;
-      let distanceY = group.current.position.z - previousPosition.z;
-
-      let distance = previousPosition.distanceTo(group.current.position);
-
-      // scale animation timescale based on distance
-      actions["Armature|mixamo.com|Layer0"].timeScale = THREE.MathUtils.lerp(
-        actions["Armature|mixamo.com|Layer0"].timeScale,
-        distance * 10,
-        0.1
-      );
-
-      if (group.current.position.x > previousPosition.x) {
-        group.current.rotation.z = THREE.MathUtils.lerp(
-          group.current.rotation.z,
-          distanceX * 2,
-          0.1
-        );
-      } else {
-        if (group.current.position.x < previousPosition.x) {
-          group.current.rotation.z = THREE.MathUtils.lerp(
-            group.current.rotation.z,
-            distanceX * 2,
-            0.1
-          );
-        }
-      }
-
-      if (group.current.position.z > previousPosition.z) {
-        group.current.rotation.x = THREE.MathUtils.lerp(
-          group.current.rotation.x,
-          distanceY * 0.5,
-          0.1
-        );
-      } else {
-        if (group.current.position.z < previousPosition.z) {
-          group.current.rotation.x = THREE.MathUtils.lerp(
-            group.current.rotation.x,
-            distanceY * 0.5,
-            0.1
-          );
-        }
-      }
-
-      previousPosition = group.current.position.clone();
-    } else {
-      //float with sin wave
-
-      group.current.position.x = THREE.MathUtils.lerp(
-        group.current.position.x,
-        Math.sin(Date.now() * 0.0005) * 0.5,
-        0.1
-      );
-      group.current.position.z = THREE.MathUtils.lerp(
-        group.current.position.z,
-        Math.sin(Date.now() * 0.0005) * 0.5,
-        0.1
-      );
-
-      // scale animation timescale based on distance
-      actions["Armature|mixamo.com|Layer0"].timeScale = THREE.MathUtils.lerp(
-        actions["Armature|mixamo.com|Layer0"].timeScale,
-        1,
-        0.1
-      );
-    }
   });
 
   return (
@@ -116,8 +47,9 @@ export function Floating(props) {
             geometry={nodes.Mesh_0001.geometry}
             material={materials["Material_0.001"]}
             skeleton={nodes.Mesh_0001.skeleton}
+            frustumCulled={false}
           >
-            <meshStandardMaterial smoothShading={true} color={"#fff"} />
+            <meshPhysicalMaterial roughness={0.2} smoothShading={true} color={"white"} />
           </skinnedMesh>
         </group>
       </group>

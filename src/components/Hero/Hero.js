@@ -10,7 +10,7 @@ const Hero = () => {
 
   return (
     <Wrapper className="hero">
-      <MaxWidthWrapper style={{ paddingBottom: width < 768 ? 86 : 16 }}>
+      <MaxWidthWrapper style={{ paddingBottom: width < 768 ? 86 : 16, maxWidth: '9000px' }}>
         <MaskSpan>
           <Creative
             initial={{ opacity: 0, y: 200, skewY: 5 }}
@@ -29,7 +29,7 @@ const Hero = () => {
             Developer
           </Developer>
         </MaskSpan>
-        <MaskSpan>
+        {/* <MaskSpan>
           <Developer
             initial={{ opacity: 0, y: 200, skewY: 5 }}
             animate={{ opacity: 1, y: 0, skewY: 0 }}
@@ -37,7 +37,7 @@ const Hero = () => {
           >
             ↓
           </Developer>
-        </MaskSpan>
+        </MaskSpan> */}
       </MaxWidthWrapper>
     </Wrapper>
   );
@@ -72,11 +72,11 @@ const Creative = styled(motion.h1)`
   font-family: "Satoshi";
   font-style: normal;
   font-weight: 700;
-  font-size: 64px;
-  line-height: 86px;
-  letter-spacing: 0.4em;
+  font-size: 128px;
+  line-height: 120px;
+  letter-spacing: 0.2em;
 
-  color: #d8d8d8;
+  color: #4D4D4D;
   text-transform: uppercase;
   margin: 0;
   padding: 0;
@@ -103,7 +103,7 @@ const Wrapper = styled.div`
   position: relative;
   margin-top: 100px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
 
   @media (max-width: 768px) {
     align-items: flex-end;

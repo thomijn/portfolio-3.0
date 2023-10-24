@@ -50,7 +50,6 @@ const Contact = () => {
 const Wrapper = styled(motion.div)`
   width: 100%;
   margin-top: 120px;
-  background-color: #fff;
   position: relative;
   padding-top: 128px;
 

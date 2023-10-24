@@ -46,9 +46,6 @@ const App = () => {
   return (
     <>
       <motion.div
-        animate={{ opacity: 1 }}
-        initial={{ opacity: 0 }}
-        transition={{ duration: 1, delay: 2.8 }}
         style={{ position: "absolute", top: 0, width: "100%", height: "100%" }}
       >
         <Scene />

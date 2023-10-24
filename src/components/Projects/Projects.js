@@ -35,9 +35,28 @@ import personal4 from "../../images/personal-4.jpg";
 import personal5 from "../../images/personal-5.jpg";
 import personal6 from "../../images/personal-6.jpg";
 
+const experiments = [
+  {
+    title: "CINEGRAM",
+    link: "https://w19ul4.csb.app/",
+  },
+  {
+    title: "OTIS BAY",
+    link: "https://otis-bay-experiment.vercel.app/",
+  },
+  {
+    title: "INTRO SHADER",
+    link: "https://lamalama-case.vercel.app/",
+  },
+  {
+    title: "LOODS 5 3D",
+    link: "https://loods5-immersive.vercel.app/",
+  },
+]
+
 export const projects = [
   {
-    title: "ERTG",
+    title: "ZUID",
     techStack: ["NextJS", "Framer Motion", "Styled Components", "MySQL"],
     text: (
       <>
@@ -73,7 +92,7 @@ export const projects = [
         </p>
       </>
     ),
-    link: "/ertg",
+    link: "https://www.zuid.com/",
     backgroundColor: "#052C55",
     sections: [
       {
@@ -134,7 +153,7 @@ export const projects = [
         </p>
       </>
     ),
-    link: "/bvdk",
+    link: "https://www.bankvoordeklas.nl/",
     backgroundColor: "#f3fafc",
     textColor: "#000",
     sections: [
@@ -196,7 +215,7 @@ export const projects = [
         </p>
       </>
     ),
-    link: "/graduation",
+    link: "https://scriptie-thomas.vercel.app/",
     backgroundColor: "#666f55",
     // textColor: "#fff",
     sections: [
@@ -250,7 +269,7 @@ export const projects = [
         </p>
       </>
     ),
-    link: "/sleeer",
+    link: "http://sleeer.patswerk.nl/",
     backgroundColor: "#5b59ff",
     sections: [
       {
@@ -266,131 +285,35 @@ export const projects = [
       },
     ],
   },
-  {
-    title: "PERSONAL",
-    text: (
-      <>
-        <p>
-          Throughout my journey, I've enjoyed exploring my interests through a
-          variety of personal projects and experiments. While some of these
-          projects are still in progress or experimental in nature, I finish
-          them with enthusiasm and enjoy sharing them with others. I believe
-          that each project has its own unique value and can inspire others.
-          <br /> <br />
-          On my portfolio, I've highlighted a selection of my personal projects
-          and experiments that I believe are worth sharing. These projects
-          showcase my journey as a creator and my passion for lifelong learning.
-          I hope that they inspire you in your own creative endeavors and I
-          welcome any feedback or questions you may have. Thank you for taking
-          the time to explore my work!
-        </p>
-      </>
-    ),
-    link: "/personal",
-    backgroundColor: "#111111",
-    sections: [
-      {
-        type: "one",
-        images: [personal1],
-        backgroundColor: "#fff",
-        text: (
-          <p>
-            An experiment recreating this Dribbble shot:{" "}
-            <a href="https://dribbble.com/shots/15110000-3D-Text-Animation">
-              CINEGRAM | Ruslan Siiz
-            </a>
-            <br /> <br />
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://w19ul4.csb.app/"
-            >
-              Check it out here!
-            </a>
-          </p>
-        ),
-      },
-      {
-        type: "one",
-        images: [personal5],
-        backgroundColor: "#fff",
-        text: (
-          <p>
-            The website of the volleyball club vv Flits.
-            <br /> <br />
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.vvflits.nl/"
-            >
-              Check it out here!
-            </a>
-          </p>
-        ),
-      },
-      {
-        type: "two",
-        images: [personal2, personal3],
-        backgroundColor: "#fff",
-        text: (
-          <p>
-            Small mobile web app for the wedding day of my sister.
-            <br /> <br />
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://jonathanenmarith.vercel.app/"
-            >
-              Check it out here!
-            </a>
-          </p>
-        ),
-      },
-      {
-        type: "one",
-        images: [personal6],
-        backgroundColor: "#fff",
-        text: (
-          <p>
-            Little Three.js & GSAP experiment with a custom made bottle.
-            <br /> <br />
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://wine-r3f.vercel.app/"
-            >
-              Check it out here!
-            </a>
-          </p>
-        ),
-      },
-      {
-        type: "one",
-        images: [personal4],
-        backgroundColor: "#fff",
-        text: (
-          <p>
-            First Three.js experiment with baking in Blender.
-            <br /> <br />
-            <a>
-              <a href="https://twopine-3d.vercel.app/">Check it out here!</a>
-            </a>
-          </p>
-        ),
-      },
-    ],
-  },
 ];
 
 const Projects = () => {
   return (
-    <MaxWidthWrapper style={{ marginBlock: 200 }}>
+    <MaxWidthWrapper className="projects" style={{ marginBlock: 200 }}>
       <Header>PROJECTS</Header>
       {projects.map((project, index) => {
         return (
           <Project key={index} link={project.link} title={project.title} />
         );
       })}
+
+      <ExperimentsWrapper>
+        <h2>
+          EXPERIMENTS
+        </h2>
+
+        <div className="experiments-wrapper">
+          {
+            experiments.map((experiment, index) => {
+              return (
+                <a key={index} href={experiment.link} target="_blank">
+                  {experiment.title}
+                </a>
+              )
+            })
+          }
+        </div>
+      </ExperimentsWrapper>
     </MaxWidthWrapper>
   );
 };
@@ -474,17 +397,19 @@ const Header = styled(motion.h2)`
   letter-spacing: 0.4em;
   /* top: 128px; */
   position: relative;
-  color: #fff;
+  color: #4D4D4D;
   margin-bottom: 64px;
 
   @media (max-width: 768px) {
     font-size: 32px;
+    letter-spacing: 0.3em;
+
   }
 `;
 
 const StyledProject = styled.div`
   width: 100%;
-  border-bottom: 1px solid #ededed;
+  border-bottom: 1px solid #4D4D4D;
   margin-bottom: 32px;
   cursor: pointer;
   max-height: 86px;
@@ -498,7 +423,7 @@ const StyledProject = styled.div`
     line-height: 86px;
     letter-spacing: 0.4em;
     position: relative;
-    color: #fff;
+    color: #4D4D4D;
   }
 
   .arrow {
@@ -525,6 +450,48 @@ const StyledProject = styled.div`
       font-size: 24px;
       line-height: 48px;
     }
+  }
+`;
+
+const ExperimentsWrapper = styled.div`
+  margin-top:100px;
+
+  h2 {
+    font-family: "Satoshi";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 86px;
+    letter-spacing: 0.4em;
+    /* top: 128px; */
+    position: relative;
+    color: #4D4D4D;
+    margin-bottom: 32px;
+
+    @media (max-width: 768px) {
+      font-size: 32px;
+      letter-spacing: 0.3em;
+    }
+  }
+
+    .experiments-wrapper {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+
+      a {
+        text-decoration: none;
+        cursor: pointer;
+        font-family: "Satoshi";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 86px;
+    letter-spacing: 0.1em;
+    position: relative;
+    color: #4D4D4D;
+    border-bottom: 1px solid #4D4D4D;
+      }
   }
 `;
 
