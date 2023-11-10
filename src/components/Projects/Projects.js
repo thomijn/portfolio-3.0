@@ -118,7 +118,7 @@ export const projects = [
     ],
   },
   {
-    title: "BVDK",
+    title: "JAM",
     techStack: ["NextJS", "React", "Styled Components", "NodeJS", "Socket.io"],
     text: (
       <>
@@ -153,7 +153,7 @@ export const projects = [
         </p>
       </>
     ),
-    link: "https://www.bankvoordeklas.nl/",
+    link: "https://www.jamwerkt.nl/",
     backgroundColor: "#f3fafc",
     textColor: "#000",
     sections: [
